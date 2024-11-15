@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,29 +14,72 @@
         >
 
         <LinearLayout
+            android:gravity="bottom"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <ImageView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/pokemonIzquierda"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="300dp"
                 android:src="@drawable/alakazam_espalda"
                 />
 
+            <Button
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/verdeOscuro"
+
+                android:text="Atacar"
+                app:cornerRadius="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="bottom"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <ImageView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/pokemonDerecha"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="300dp"
                 android:src="@drawable/arbok"
+                />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                />
+
+            <Button
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/verdeOscuro"
+
+                android:text="Atacar"
+                app:cornerRadius="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 />
 
 
