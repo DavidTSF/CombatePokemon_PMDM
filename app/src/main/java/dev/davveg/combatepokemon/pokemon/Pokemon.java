@@ -1,4 +1,4 @@
-package dev.davveg.combatepokemon;
+package dev.davveg.combatepokemon.pokemon;
 
 public class Pokemon {
     String nombre;
@@ -62,4 +62,5 @@ public class Pokemon {
     public void setDefensaEspecial(int defensaEspecial) {
         this.defensaEspecial = defensaEspecial;
     }
+
 }

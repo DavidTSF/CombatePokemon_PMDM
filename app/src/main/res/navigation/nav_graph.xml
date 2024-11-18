@@ -10,4 +10,5 @@
         android:name="dev.davveg.combatepokemon.PokemonBattleFragment"
         android:label="fragment_pokemon_battle"
         tools:layout="@layout/fragment_pokemon_battle" />
+
 </navigation>

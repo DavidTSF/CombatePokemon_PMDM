@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 
 import dev.davveg.combatepokemon.databinding.FragmentPokemonBattleBinding;
+import dev.davveg.combatepokemon.pokemon.Pokemon;
+import dev.davveg.combatepokemon.viewmodel.PokemonBattleViewModel;
 
 
 public class PokemonBattleFragment extends Fragment {
@@ -32,6 +34,53 @@ public class PokemonBattleFragment extends Fragment {
         Glide.with(PokemonBattleFragment.this).load(R.drawable.alakazam_espalda).into(binding.pokemonIzquierda);
         Glide.with(PokemonBattleFragment.this).load(R.drawable.arbok).into(binding.pokemonDerecha);
 
+
+        final PokemonBattleViewModel pokemonBattleViewModel = new ViewModelProvider(this).get(PokemonBattleViewModel.class);
+
+        Pokemon rightPokemon = new Pokemon("Arbok", 200,100,50,50,50);
+        Pokemon leftPokemon = new Pokemon("Alakazam", 200,100,50,50,50);
+
+
+
+
+
+        binding.pokemonLeftHP.setText( String.valueOf(leftPokemon.getHp()) );
+        binding.pokemonRightHP.setText( String.valueOf(rightPokemon.getHp()) );
+
+
+        binding.pokemonLeftButton.setOnClickListener(
+                new View.OnClickListener() {
+                     @Override
+                     public void onClick(View view) {
+                        pokemonBattleViewModel.attackLtoR(leftPokemon, rightPokemon);
+                     }
+                 }
+        );
+
+        pokemonBattleViewModel
+                .getPokemon_left().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
+                    @Override
+                    public void onChanged(Pokemon pokemon) {
+                        binding.pokemonLeftHP.setText( String.valueOf( pokemon.getHp() ) );
+                    }
+                });
+
+        binding.pokemonRightButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pokemonBattleViewModel.attackRtoL(rightPokemon, leftPokemon);
+                    }
+                }
+        );
+
+        pokemonBattleViewModel
+                .getPokemon_right().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
+                    @Override
+                    public void onChanged(Pokemon pokemon) {
+                        binding.pokemonRightHP.setText( String.valueOf( pokemon.getHp() ) );
+                    }
+                });
 
 
     }

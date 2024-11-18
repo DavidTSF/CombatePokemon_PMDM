@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -20,6 +20,49 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="HP:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftHP"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="Attack:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
             <ImageView
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -30,6 +73,7 @@
                 />
 
             <Button
+                android:id="@+id/pokemonLeftButton"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="140dp"
@@ -44,6 +88,8 @@
                 android:layout_height="50dp"
                 />
 
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -52,6 +98,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="HP:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonRightHP"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="Attack:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonRightAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
 
             <ImageView
                 android:layout_gravity="center"
@@ -68,6 +156,7 @@
                 />
 
             <Button
+                android:id="@+id/pokemonRightButton"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="140dp"
