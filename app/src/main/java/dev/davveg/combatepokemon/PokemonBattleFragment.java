@@ -38,6 +38,7 @@ public class PokemonBattleFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Glide.with(PokemonBattleFragment.this).load(R.drawable.alakazam_espalda).into(binding.pokemonIzquierda);
         Glide.with(PokemonBattleFragment.this).load(R.drawable.arbok).into(binding.pokemonDerecha);
 
@@ -60,6 +61,18 @@ public class PokemonBattleFragment extends Fragment {
         binding.pokemonLeftHP.setText( String.valueOf(leftPokemon.getHp()) );
         binding.pokemonRightHP.setText( String.valueOf(rightPokemon.getHp()) );
 
+        binding.pokemonRightAttack.setText( String.valueOf( rightPokemon.getAtaque() ) );
+        binding.pokemonRightDefense.setText( String.valueOf( rightPokemon.getDefensa() ) );
+        binding.pokemonRightExAttack.setText( String.valueOf( rightPokemon.getAtaqueEspecial() ) );
+        binding.pokemonRightExDefense.setText( String.valueOf( rightPokemon.getDefensa() ) );
+        binding.pokemonRightName.setText( String.valueOf( rightPokemon.getNombre() ) );
+
+        binding.pokemonLeftAttack.setText( String.valueOf( leftPokemon.getAtaque() ) );
+        binding.pokemonLeftDefense.setText( String.valueOf( leftPokemon.getDefensa() ) );
+        binding.pokemonLeftExAttack.setText( String.valueOf( leftPokemon.getAtaqueEspecial() ) );
+        binding.pokemonLeftExDefense.setText( String.valueOf( leftPokemon.getDefensa() ) );
+        binding.pokemonLeftName.setText( String.valueOf( leftPokemon.getNombre() ) );
+
         progressBarLeft.setMax(leftPokemon.getMaxHp());
         progressBarLeft.setProgress(leftPokemon.getHp());
         progressBarRight.setMax(rightPokemon.getMaxHp());
@@ -74,6 +87,9 @@ public class PokemonBattleFragment extends Fragment {
                     public void onChanged(Pokemon pokemon) {
                         binding.pokemonLeftHP.setText( String.valueOf( pokemon.getHp() ) );
                         reduceBar(progressBarLeft, pokemon, view);
+
+
+
                     }
                 });
 
@@ -86,6 +102,8 @@ public class PokemonBattleFragment extends Fragment {
                     public void onChanged(Pokemon pokemon) {
                         binding.pokemonRightHP.setText( String.valueOf( pokemon.getHp() ) );
                         reduceBar(progressBarRight, pokemon, view);
+
+
                     }
                 });
 
@@ -96,11 +114,11 @@ public class PokemonBattleFragment extends Fragment {
     @SuppressLint("ResourceType")
     public void reduceBar(ProgressBar pb, Pokemon p, View view) {
         int porcentajeVida = (int) (100 - ( ( (double) (p.getMaxHp() - p.getHp()) / p.getMaxHp() ) * 100 ));
-        System.out.println("Porcentaje: " + porcentajeVida);
         if (porcentajeVida < 25) {
-            pb.setIndeterminateTintList(ColorStateList.valueOf(Color.RED));
+            pb.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        } else if (porcentajeVida < 50) {
+            pb.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#ffa500")));
         }
-
         pb.setProgress(p.getHp());
     }
 

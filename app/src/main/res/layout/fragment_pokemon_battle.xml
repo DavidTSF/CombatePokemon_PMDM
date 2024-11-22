@@ -25,13 +25,99 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Nombre:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftName"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="AtaqueEx:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftExAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Ataque:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Defensa ex:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftExDefense"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Defensa:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonLeftDefense"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
                         android:layout_height="20dp"
                         android:text="HP:">
                     </TextView>
@@ -42,21 +128,7 @@
                     </TextView>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="20dp"
-                        android:text="Attack:">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/pokemonLeftAttack"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp">
-                    </TextView>
-                </LinearLayout>
 
                 <ProgressBar
                     android:layout_marginRight="20dp"
@@ -115,17 +187,86 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="HP:">
+                        android:text="Nombre:">
                     </TextView>
                     <TextView
-                        android:id="@+id/pokemonRightHP"
+                        android:id="@+id/pokemonRightName"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="AtaqueEx:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonRightExAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Ataque:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonRightAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Defensa ex:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonRightExDefense"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+                    </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Defensa:">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/pokemonRightDefense"
                         android:layout_width="match_parent"
                         android:layout_height="20dp">
                     </TextView>
@@ -136,12 +277,12 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Attack:">
+                        android:text="HP:">
                     </TextView>
                     <TextView
-                        android:id="@+id/pokemonRightAttack"
+                        android:id="@+id/pokemonRightHP"
                         android:layout_width="match_parent"
                         android:layout_height="20dp">
                     </TextView>

@@ -1,10 +1,14 @@
 package dev.davveg.combatepokemon.viewmodel;
 
+import java.util.Random;
+
 import dev.davveg.combatepokemon.pokemon.Pokemon;
 
 public class PokemonBattleModel {
+    private static final Random random = new Random();
 
     public static class BattleGround {
+
         Pokemon attacker;
         Pokemon defender;
         public BattleGround(Pokemon attacker, Pokemon defender) {
@@ -15,9 +19,13 @@ public class PokemonBattleModel {
         double K = 100;
 
         public void resolve() {
+            int danio = 0;
+            if ( willBeNormalAttack() ) {
+                danio = (int) (K * attacker.getAtaque() / (K + defender.getDefensa()));
+            } else {
+                danio = (int) (K * attacker.getAtaqueEspecial() / (K + defender.getDefensaEspecial()));
+            }
 
-
-            int danio = (int) (K * attacker.getAtaque() / (K + defender.getDefensa()));
             if (defender.getHp() <= danio) {
                 defender.setHp(0);
             } else {
@@ -25,17 +33,12 @@ public class PokemonBattleModel {
             }
 
 
-
-
-
-
-
         }
-
     }
 
     public interface Callback {
         void acabarAtaque(Pokemon attacker, Pokemon defender);
+
 
     }
 
@@ -46,6 +49,8 @@ public class PokemonBattleModel {
     }
 
 
-
+    private static boolean willBeNormalAttack() {
+        return random.nextBoolean();
+    }
 
 }

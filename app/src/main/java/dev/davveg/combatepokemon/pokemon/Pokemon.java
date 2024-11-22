@@ -1,11 +1,17 @@
 package dev.davveg.combatepokemon.pokemon;
 
-public class Pokemon {
+import java.io.Serializable;
+
+public class Pokemon implements Serializable {
     String nombre;
     int hp;
     int maxHp;
     int ataque ,defensa;
     int ataqueEspecial ,defensaEspecial;
+
+
+    public Pokemon() {
+    }
 
     public Pokemon(String nombre, int hp, int ataque, int defensa, int ataqueEspecial, int defensaEspecial) {
         this.nombre = nombre;
