@@ -3,6 +3,7 @@ package dev.davveg.combatepokemon.pokemon;
 public class Pokemon {
     String nombre;
     int hp;
+    int maxHp;
     int ataque ,defensa;
     int ataqueEspecial ,defensaEspecial;
 
@@ -13,6 +14,7 @@ public class Pokemon {
         this.defensa = defensa;
         this.ataqueEspecial = ataqueEspecial;
         this.defensaEspecial = defensaEspecial;
+        this.maxHp = hp;
     }
 
     public String getNombre() {
@@ -39,6 +41,10 @@ public class Pokemon {
         return defensaEspecial;
     }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -63,4 +69,7 @@ public class Pokemon {
         this.defensaEspecial = defensaEspecial;
     }
 
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
 }

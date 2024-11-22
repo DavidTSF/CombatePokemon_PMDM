@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
+                
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -57,6 +57,16 @@
                         android:layout_height="20dp">
                     </TextView>
                 </LinearLayout>
+
+                <ProgressBar
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/progressBarLeft"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progressTint="#67AB3A"
+                    android:progress="100"
+                    />
 
 
 
@@ -136,6 +146,16 @@
                         android:layout_height="20dp">
                     </TextView>
                 </LinearLayout>
+
+                <ProgressBar
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/progressBarRight"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progressTint="#67AB3A"
+                    android:progress="100"
+                    />
 
             </LinearLayout>
 

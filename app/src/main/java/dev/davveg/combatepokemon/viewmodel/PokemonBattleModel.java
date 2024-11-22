@@ -11,14 +11,32 @@ public class PokemonBattleModel {
             this.attacker = attacker;
             this.defender = defender;
         }
+        //Constante para el balance de la defensa
+        double K = 100;
+
         public void resolve() {
-            defender.setHp(defender.getHp() - attacker.getAtaque());
+
+
+            int danio = (int) (K * attacker.getAtaque() / (K + defender.getDefensa()));
+            if (defender.getHp() <= danio) {
+                defender.setHp(0);
+            } else {
+                defender.setHp(defender.getHp() - danio);
+            }
+
+
+
+
+
+
+
         }
 
     }
 
     public interface Callback {
         void acabarAtaque(Pokemon attacker, Pokemon defender);
+
     }
 
 
