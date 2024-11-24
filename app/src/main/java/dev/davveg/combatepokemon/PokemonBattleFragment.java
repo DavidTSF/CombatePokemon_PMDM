@@ -26,6 +26,8 @@ import android.widget.ProgressBar;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 import dev.davveg.combatepokemon.databinding.FragmentPokemonBattleBinding;
 import dev.davveg.combatepokemon.pokemon.Pokemon;
 import dev.davveg.combatepokemon.viewmodel.PokemonBattleViewModel;
@@ -75,10 +77,7 @@ public class PokemonBattleFragment extends Fragment {
         progressBarRight.setMax(rightPokemon.getMaxHp());
         progressBarRight.setProgress(rightPokemon.getHp());
 
-        binding.pokemonLeftButton.setOnClickListener(
-                view1 -> pbViewModel.attack(leftPokemon, rightPokemon, PokemonBattleViewModel.ATTACK_D.LEFT_TO_RIGHT)
-        );
-
+        // Comprueba si el combate a acabado y si si, devuelve al usuario al homeFragment despues de 6 segundos
         pbViewModel.getBattleFinished().observe( getViewLifecycleOwner(), battleStatus -> {
             if (battleStatus.finished) {
                 // Si ha acabado el combate le enviamos un mensaje y volveremos al fragmento home para volver a empezaar otro combate
@@ -104,6 +103,10 @@ public class PokemonBattleFragment extends Fragment {
             }
         });
 
+
+        binding.pokemonLeftButton.setOnClickListener(
+                view1 -> pbViewModel.attack(leftPokemon, rightPokemon, PokemonBattleViewModel.ATTACK_D.LEFT_TO_RIGHT)
+        );
         pbViewModel.getPokemon_left().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
             @Override
             public void onChanged(Pokemon pokemon) {
@@ -111,7 +114,6 @@ public class PokemonBattleFragment extends Fragment {
                 reduceBar(progressBarLeft, pokemon);
             }
         });
-
 
         binding.pokemonRightButton.setOnClickListener(
                 view2-> pbViewModel.attack(rightPokemon, leftPokemon, PokemonBattleViewModel.ATTACK_D.RIGHT_TO_LEFT)
@@ -124,15 +126,30 @@ public class PokemonBattleFragment extends Fragment {
                     }
                 });
 
+
         pbViewModel.getPokemonLowHp().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
             @Override
-            public void onChanged(Pokemon pokemonlow) {
-                if ( pokemonlow !=  null ) {
-                    Snackbar snackbar = Snackbar.make(view, "El pokemon: " + pokemonlow.getNombre() + " tiene muy poca vida!", Snackbar.LENGTH_LONG);
+            public void onChanged(Pokemon pokemonLow) {
+                if ( pokemonLow !=  null ) {
+                    Snackbar snackbar = Snackbar.make(view, "El pokemon: " + pokemonLow.getNombre() + " tiene muy poca vida!", Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }
         });
+
+        pbViewModel.getIsNormalAttack().observe(getViewLifecycleOwner(), isNormal -> {
+            if ( isNormal ) {
+                HomeFragment.showText(view,
+                        "Pokemon :" + Objects.requireNonNull(pbViewModel.getPokemonCurrentAttacker().getValue()).getNombre() +
+                        " a hecho un ataque normal!");
+            } else {
+                HomeFragment.showText(view,
+                        "Pokemon :" + Objects.requireNonNull(pbViewModel.getPokemonCurrentAttacker().getValue()).getNombre() +
+                                " a hecho un ataque especial!");
+            }
+        });
+
+
 
         }
 

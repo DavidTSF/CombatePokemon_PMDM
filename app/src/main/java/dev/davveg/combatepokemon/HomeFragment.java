@@ -145,7 +145,7 @@ public class HomeFragment extends Fragment {
                 navController.navigate(R.id.action_homeFragment_to_pokemonBattle);
 
             } catch (Exception e ) {
-                showErrorText(view, "Faltan valores por introducir/se ha introducido texto en campos numericos");
+                showText(view, "Faltan valores por introducir/se ha introducido texto en campos numericos");
                 e.printStackTrace();
             }
 
@@ -161,8 +161,8 @@ public class HomeFragment extends Fragment {
         snackbar.show();
     }
 
-    public void showErrorText(View view, String text) {
-        Snackbar snackbar = Snackbar.make( view, text, Snackbar.LENGTH_LONG );
+    public static void showText(View view, String text) {
+        Snackbar snackbar = Snackbar.make( view, text, Snackbar.LENGTH_SHORT );
         snackbar.show();
     }
 

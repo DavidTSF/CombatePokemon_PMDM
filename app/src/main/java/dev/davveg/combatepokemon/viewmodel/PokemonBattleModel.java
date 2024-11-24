@@ -23,15 +23,18 @@ public class PokemonBattleModel {
         void acabarAtaque(Pokemon attacker, Pokemon defender);
         void battleFinished(Pokemon attacker, Pokemon defender);
         void pokemonLowHp(Pokemon pokemonLowHp);
+        void notifyIsNormalAttack(boolean isNormalAttack, Pokemon attacker);
     }
 
     public void attackPokemon (BattleGround bg, Callback callback) {
-
+        boolean willBeNormalAttack = willBeNormalAttack();
         int danio = 0;
-        if ( willBeNormalAttack() ) {
+        if ( willBeNormalAttack ) {
             danio = (int) (bg.K * bg.attacker.getAtaque() / (bg.K + bg.defender.getDefensa()));
+            callback.notifyIsNormalAttack(true, bg.attacker);
         } else {
             danio = (int) (bg.K * bg.attacker.getAtaqueEspecial() / (bg.K + bg.defender.getDefensaEspecial()));
+            callback.notifyIsNormalAttack(false, bg.attacker);
         }
 
         int porcentajeVida = (int) (100 - ( ( (double) (bg.defender.getMaxHp() - bg.defender.getHp()) / bg.defender.getMaxHp() ) * 100 ));

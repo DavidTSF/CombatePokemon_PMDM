@@ -25,6 +25,7 @@ public class PokemonBattleViewModel extends AndroidViewModel {
         }
     }
 
+
     Executor executor;
     PokemonBattleModel pokemonBattleModel;
 
@@ -32,6 +33,9 @@ public class PokemonBattleViewModel extends AndroidViewModel {
     MutableLiveData<Pokemon> pokemon_right = new MutableLiveData<>();
     MutableLiveData<BattleStatus> battleStatus = new MutableLiveData<>();
     MutableLiveData<Pokemon> pokemonLowHp = new MutableLiveData<>();
+
+    MutableLiveData<Boolean> isNormalAttack = new MutableLiveData<>();
+    MutableLiveData<Pokemon> pokemonCurrentAttacker = new MutableLiveData<>();
 
     public enum ATTACK_D {
         RIGHT_TO_LEFT,
@@ -49,13 +53,13 @@ public class PokemonBattleViewModel extends AndroidViewModel {
         executor.execute(() ->
             pokemonBattleModel.attackPokemon(battleGround, new PokemonBattleModel.Callback() {
                 @Override
-                public void acabarAtaque(Pokemon attacker1, Pokemon defender1) {
+                public void acabarAtaque(Pokemon attacker, Pokemon defender) {
                     if (attackDir.equals(ATTACK_D.LEFT_TO_RIGHT)) {
-                        pokemon_left.postValue(attacker1);
-                        pokemon_right.postValue(defender1);
+                        pokemon_left.postValue(attacker);
+                        pokemon_right.postValue(defender);
                     } else {
-                        pokemon_left.postValue(defender1);
-                        pokemon_right.postValue(attacker1);
+                        pokemon_left.postValue(defender);
+                        pokemon_right.postValue(attacker);
                     }
                 }
                 @Override
@@ -67,10 +71,17 @@ public class PokemonBattleViewModel extends AndroidViewModel {
                 public void pokemonLowHp(Pokemon pokemonLow) {
                     pokemonLowHp.postValue(pokemonLow);
                 }
+
+                @Override
+                public void notifyIsNormalAttack(boolean pIsNormalAttack, Pokemon attacker) {
+                    pokemonCurrentAttacker.postValue(attacker);
+                    isNormalAttack.postValue(pIsNormalAttack);
+                }
             })
         );
 
     }
+
 
 
     public MutableLiveData<Pokemon> getPokemon_left() {
@@ -87,5 +98,13 @@ public class PokemonBattleViewModel extends AndroidViewModel {
 
     public MutableLiveData<Pokemon> getPokemonLowHp() {
         return pokemonLowHp;
+    }
+
+    public MutableLiveData<Boolean> getIsNormalAttack() {
+        return isNormalAttack;
+    }
+
+    public MutableLiveData<Pokemon> getPokemonCurrentAttacker() {
+        return pokemonCurrentAttacker;
     }
 }
