@@ -25,7 +25,6 @@ public class PokemonBattleViewModel extends AndroidViewModel {
         }
     }
 
-
     Executor executor;
     PokemonBattleModel pokemonBattleModel;
 
@@ -53,7 +52,7 @@ public class PokemonBattleViewModel extends AndroidViewModel {
         executor.execute(() ->
             pokemonBattleModel.attackPokemon(battleGround, new PokemonBattleModel.Callback() {
                 @Override
-                public void acabarAtaque(Pokemon attacker, Pokemon defender) {
+                public void finishAttack(Pokemon attacker, Pokemon defender) {
                     if (attackDir.equals(ATTACK_D.LEFT_TO_RIGHT)) {
                         pokemon_left.postValue(attacker);
                         pokemon_right.postValue(defender);

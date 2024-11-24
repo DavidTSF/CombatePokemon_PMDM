@@ -20,7 +20,7 @@ public class PokemonBattleModel {
     }
 
     public interface Callback {
-        void acabarAtaque(Pokemon attacker, Pokemon defender);
+        void finishAttack(Pokemon attacker, Pokemon defender);
         void battleFinished(Pokemon attacker, Pokemon defender);
         void pokemonLowHp(Pokemon pokemonLowHp);
         void notifyIsNormalAttack(boolean isNormalAttack, Pokemon attacker);
@@ -54,7 +54,7 @@ public class PokemonBattleModel {
         }
 
 
-        callback.acabarAtaque(bg.attacker, bg.defender);
+        callback.finishAttack(bg.attacker, bg.defender);
     }
 
 
