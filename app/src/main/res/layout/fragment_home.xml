@@ -23,6 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="30dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/layout_bg"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,10 +32,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
-
             android:layout_height="0dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="20dp"
@@ -45,170 +44,178 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
+            <ScrollView
                 android:layout_weight="1"
-                android:gravity="left"
-                android:orientation="vertical">
-
-                <TextView
+                android:layout_marginRight="5dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Nombre" />
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/homePokemonLName"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Nombre" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="HP" />
+                    <EditText
+                        android:id="@+id/homePokemonLName"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <EditText
-                    android:id="@+id/homePokemonLHP"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="HP" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Ataque" />
+                    <EditText
+                        android:id="@+id/homePokemonLHP"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <EditText
-                    android:id="@+id/homePokemonLAttack"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Ataque" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Ataque especial" />
+                    <EditText
+                        android:id="@+id/homePokemonLAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <EditText
-                    android:id="@+id/homePokemonLAttackEx"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Ataque especial" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Defensa" />
+                    <EditText
+                        android:id="@+id/homePokemonLAttackEx"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <EditText
-                    android:id="@+id/homePokemonLDefense"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Defensa" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Defensa especial" />
+                    <EditText
+                        android:id="@+id/homePokemonLDefense"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <EditText
-                    android:id="@+id/homePokemonLDefenseEx"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Defensa especial" />
 
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/homePokemonLDefenseEx"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
                 android:layout_weight="1"
-                android:gravity="right"
-                android:orientation="vertical">
-
-                <TextView
+                android:layout_width="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="match_parent">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Nombre" />
+                    android:layout_height="match_parent"
 
-                <EditText
-                    android:id="@+id/homePokemonRName"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="HP" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="bottom"
+                        android:text="Nombre" />
 
-                <EditText
-                    android:id="@+id/homePokemonRHP"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <EditText
+                        android:id="@+id/homePokemonRName"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Ataque" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="HP" />
 
-                <EditText
-                    android:id="@+id/homePokemonRAttack"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <EditText
+                        android:id="@+id/homePokemonRHP"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Ataque especial" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Ataque" />
 
-                <EditText
-                    android:id="@+id/homePokemonRAttackEx"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <EditText
+                        android:id="@+id/homePokemonRAttack"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Defensa" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Ataque especial" />
 
-                <EditText
-                    android:id="@+id/homePokemonRDefense"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <EditText
+                        android:id="@+id/homePokemonRAttackEx"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="7dp"
-                    android:gravity="bottom"
-                    android:text="Defensa especial" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Defensa" />
 
-                <EditText
-                    android:id="@+id/homePokemonRDefenseEx"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></EditText>
+                    <EditText
+                        android:id="@+id/homePokemonRDefense"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="7dp"
+                        android:gravity="bottom"
+                        android:text="Defensa especial" />
 
+                    <EditText
+                        android:id="@+id/homePokemonRDefenseEx"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
+
+                </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 
@@ -219,8 +226,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:text="EMPEZAR"
             android:backgroundTint="@color/verdeOscuro"
+            android:text="EMPEZAR"
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

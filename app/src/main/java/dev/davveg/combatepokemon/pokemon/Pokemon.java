@@ -9,6 +9,8 @@ public class Pokemon implements Serializable {
     int ataque ,defensa;
     int ataqueEspecial ,defensaEspecial;
 
+    boolean alreadyLow = false;
+
 
     public Pokemon() {
     }
@@ -22,6 +24,7 @@ public class Pokemon implements Serializable {
         this.defensaEspecial = defensaEspecial;
         this.maxHp = hp;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -51,6 +54,10 @@ public class Pokemon implements Serializable {
         return maxHp;
     }
 
+    public boolean isAlreadyLow() {
+        return alreadyLow;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -77,5 +84,9 @@ public class Pokemon implements Serializable {
 
     public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
+    }
+
+    public void setAlreadyLow(boolean alreadyLow) {
+        this.alreadyLow = alreadyLow;
     }
 }

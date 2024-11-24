@@ -13,11 +13,25 @@ import dev.davveg.combatepokemon.pokemon.Pokemon;
 
 public class PokemonBattleViewModel extends AndroidViewModel {
 
+    public static class BattleStatus {
+        public Pokemon winner;
+        public Pokemon losser;
+        public boolean finished;
+
+        public BattleStatus(Pokemon winner, Pokemon losser, boolean finished) {
+            this.winner = winner;
+            this.losser = losser;
+            this.finished = finished;
+        }
+    }
+
     Executor executor;
     PokemonBattleModel pokemonBattleModel;
 
     MutableLiveData<Pokemon> pokemon_left = new MutableLiveData<>();
     MutableLiveData<Pokemon> pokemon_right = new MutableLiveData<>();
+    MutableLiveData<BattleStatus> battleStatus = new MutableLiveData<>();
+    MutableLiveData<Pokemon> pokemonLowHp = new MutableLiveData<>();
 
     public enum ATTACK_D {
         RIGHT_TO_LEFT,
@@ -32,24 +46,30 @@ public class PokemonBattleViewModel extends AndroidViewModel {
 
     public void attack(Pokemon attacker, Pokemon defender, ATTACK_D attackDir) {
         final PokemonBattleModel.BattleGround battleGround = new PokemonBattleModel.BattleGround(attacker, defender);
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                pokemonBattleModel.attackPokemon(battleGround, new PokemonBattleModel.Callback() {
-                    @Override
-                    public void acabarAtaque(Pokemon attacker, Pokemon defender) {
-                        if (attackDir.equals(ATTACK_D.LEFT_TO_RIGHT)) {
-                            pokemon_left.postValue(attacker);
-                            pokemon_right.postValue(defender);
-                        } else {
-                            pokemon_left.postValue(defender);
-                            pokemon_right.postValue(attacker);
-                        }
-
+        executor.execute(() ->
+            pokemonBattleModel.attackPokemon(battleGround, new PokemonBattleModel.Callback() {
+                @Override
+                public void acabarAtaque(Pokemon attacker1, Pokemon defender1) {
+                    if (attackDir.equals(ATTACK_D.LEFT_TO_RIGHT)) {
+                        pokemon_left.postValue(attacker1);
+                        pokemon_right.postValue(defender1);
+                    } else {
+                        pokemon_left.postValue(defender1);
+                        pokemon_right.postValue(attacker1);
                     }
-                });
-            }
-        });
+                }
+                @Override
+                public void battleFinished(Pokemon attacker, Pokemon defender) {
+                    defender.setAlreadyLow(false);
+                    battleStatus.postValue( new BattleStatus(attacker, defender, true) );
+                }
+                @Override
+                public void pokemonLowHp(Pokemon pokemonLow) {
+                    pokemonLowHp.postValue(pokemonLow);
+                }
+            })
+        );
+
     }
 
 
@@ -59,5 +79,13 @@ public class PokemonBattleViewModel extends AndroidViewModel {
 
     public MutableLiveData<Pokemon> getPokemon_right() {
         return pokemon_right;
+    }
+
+    public MutableLiveData<BattleStatus> getBattleFinished() {
+        return battleStatus;
+    }
+
+    public MutableLiveData<Pokemon> getPokemonLowHp() {
+        return pokemonLowHp;
     }
 }

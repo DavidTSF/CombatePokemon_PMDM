@@ -13,13 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
 import dev.davveg.combatepokemon.databinding.FragmentPokemonBattleBinding;
 import dev.davveg.combatepokemon.pokemon.Pokemon;
@@ -42,21 +47,13 @@ public class PokemonBattleFragment extends Fragment {
         Glide.with(PokemonBattleFragment.this).load(R.drawable.alakazam_espalda).into(binding.pokemonIzquierda);
         Glide.with(PokemonBattleFragment.this).load(R.drawable.arbok).into(binding.pokemonDerecha);
 
-        final PokemonBattleViewModel pbViewModel = new ViewModelProvider(this).get(PokemonBattleViewModel.class);
+        PokemonBattleViewModel pbViewModel = new ViewModelProvider(requireActivity()).get(PokemonBattleViewModel.class);
 
-        Pokemon rightPokemon;
-        Pokemon leftPokemon;
+        Pokemon rightPokemon = pbViewModel.getPokemon_right().getValue();
+        Pokemon leftPokemon = pbViewModel.getPokemon_left().getValue();
 
         ProgressBar progressBarLeft = binding.progressBarLeft;
         ProgressBar progressBarRight = binding.progressBarRight;
-
-        if ( pbViewModel.getPokemon_right().isInitialized() && pbViewModel.getPokemon_left().isInitialized() ) {
-            leftPokemon = pbViewModel.getPokemon_left().getValue();
-            rightPokemon = pbViewModel.getPokemon_right().getValue();
-        } else {
-            rightPokemon = new Pokemon("Arbok", 600,120,50,50,50);
-            leftPokemon = new Pokemon("Alakazam", 500,80,50,50,50);
-        }
 
         binding.pokemonLeftHP.setText( String.valueOf(leftPokemon.getHp()) );
         binding.pokemonRightHP.setText( String.valueOf(rightPokemon.getHp()) );
@@ -78,41 +75,68 @@ public class PokemonBattleFragment extends Fragment {
         progressBarRight.setMax(rightPokemon.getMaxHp());
         progressBarRight.setProgress(rightPokemon.getHp());
 
-
         binding.pokemonLeftButton.setOnClickListener(
                 view1 -> pbViewModel.attack(leftPokemon, rightPokemon, PokemonBattleViewModel.ATTACK_D.LEFT_TO_RIGHT)
         );
-        pbViewModel.getPokemon_left().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
+
+        pbViewModel.getBattleFinished().observe( getViewLifecycleOwner(), battleStatus -> {
+            if (battleStatus.finished) {
+                // Si ha acabado el combate le enviamos un mensaje y volveremos al fragmento home para volver a empezaar otro combate
+                Snackbar snackbar = Snackbar.make(view, "Combate a acabado, ha ganado: " + battleStatus.winner.getNombre()
+                        + ". En 6 segundos volveras al home", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                binding.pokemonRightButton.setOnClickListener(null);
+                binding.pokemonLeftButton.setOnClickListener(null);
+
+                Handler mainLooperHandler = new Handler(Looper.getMainLooper());
+                mainLooperHandler.postDelayed(new Runnable() {
                     @Override
-                    public void onChanged(Pokemon pokemon) {
-                        binding.pokemonLeftHP.setText( String.valueOf( pokemon.getHp() ) );
-                        reduceBar(progressBarLeft, pokemon, view);
-
-
-
+                    public void run() {
+                        if(getActivity()!=null){
+                            NavController navController = Navigation.findNavController(view);
+                            navController.navigate(R.id.action_pokemonBattle_to_homeFragment);
+                        }
                     }
-                });
+                }, 6000);
+
+                battleStatus.finished = false;
+                pbViewModel.getBattleFinished().postValue(battleStatus);
+            }
+        });
+
+        pbViewModel.getPokemon_left().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
+            @Override
+            public void onChanged(Pokemon pokemon) {
+                binding.pokemonLeftHP.setText( String.valueOf( pokemon.getHp() ) );
+                reduceBar(progressBarLeft, pokemon);
+            }
+        });
+
 
         binding.pokemonRightButton.setOnClickListener(
-                view12 -> pbViewModel.attack(rightPokemon, leftPokemon, PokemonBattleViewModel.ATTACK_D.RIGHT_TO_LEFT)
+                view2-> pbViewModel.attack(rightPokemon, leftPokemon, PokemonBattleViewModel.ATTACK_D.RIGHT_TO_LEFT)
         );
-
         pbViewModel.getPokemon_right().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
                     @Override
                     public void onChanged(Pokemon pokemon) {
                         binding.pokemonRightHP.setText( String.valueOf( pokemon.getHp() ) );
-                        reduceBar(progressBarRight, pokemon, view);
-
-
+                        reduceBar(progressBarRight, pokemon);
                     }
                 });
 
+        pbViewModel.getPokemonLowHp().observe(getViewLifecycleOwner(), new Observer<Pokemon>() {
+            @Override
+            public void onChanged(Pokemon pokemonlow) {
+                if ( pokemonlow !=  null ) {
+                    Snackbar snackbar = Snackbar.make(view, "El pokemon: " + pokemonlow.getNombre() + " tiene muy poca vida!", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            }
+        });
 
-    }
+        }
 
-
-    @SuppressLint("ResourceType")
-    public void reduceBar(ProgressBar pb, Pokemon p, View view) {
+    public void reduceBar(ProgressBar pb, Pokemon p) {
         int porcentajeVida = (int) (100 - ( ( (double) (p.getMaxHp() - p.getHp()) / p.getMaxHp() ) * 100 ));
         if (porcentajeVida < 25) {
             pb.setProgressTintList(ColorStateList.valueOf(Color.RED));
